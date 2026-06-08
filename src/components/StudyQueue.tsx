@@ -89,9 +89,17 @@ export function StudyQueue({
 
       {current ? (
         <>
-          <button
-            className="mt-6 w-full rounded-2xl border bg-zinc-50 p-6 text-left hover:bg-zinc-100"
+          <div
+            className="mt-6 w-full rounded-2xl border bg-zinc-50 p-6 text-left hover:bg-zinc-100 cursor-pointer"
+            role="button"
+            tabIndex={0}
             onClick={() => setFlipped((v) => !v)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setFlipped((v) => !v);
+              }
+            }}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -138,7 +146,7 @@ export function StudyQueue({
                 <div className="text-zinc-500">点击翻面查看释义 / 例句</div>
               )}
             </div>
-          </button>
+          </div>
 
           <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4">
             {masteryButtons.map((b) => (
